@@ -21,7 +21,7 @@ const ProjectCard: React.FC<{ p: P }> = ({ p }) => (
     aria-label={`${p.name} sayfasına git`}
   >
     <Image
-      src={(p.images?.[0] as any) || HeroImg}
+      src={p.images?.[0] || HeroImg}
       alt={p.name}
       width={800}
       height={600}

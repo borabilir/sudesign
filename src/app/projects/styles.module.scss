@@ -27,7 +27,9 @@
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
 
-      &::-webkit-scrollbar { display: none; }
+      &::-webkit-scrollbar {
+        display: none;
+      }
       scrollbar-width: none;
 
       .imageWrapper {
@@ -82,7 +84,7 @@
         letter-spacing: 0.06em;
         font-size: 16px;
         text-transform: uppercase;
-        text-shadow: 0 1px 3px rgba(0,0,0,.45);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
         opacity: 0;
         transform: translateY(-6px);
         transition: opacity 220ms ease, transform 220ms ease;

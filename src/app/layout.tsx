@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Quicksand } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "@/Core/styles/main.scss";
 import Header from "@/Core/components/Header";
 import styles from "./styles.module.scss";
