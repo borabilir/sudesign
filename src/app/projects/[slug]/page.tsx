@@ -16,25 +16,26 @@ export default function ProjectDetails({ params }: Props) {
   const { slug } = React.use(params);
   const project = Projects.find((p) => p.slug === slug);
 
-  if (!project) return notFound();
-
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
+
+  const onPrev = useCallback(
+    () =>
+      setIdx((i) => (i - 1 + (project?.images.length || 0)) % (project?.images.length || 1)),
+    [project?.images.length]
+  );
+  const onNext = useCallback(
+    () => setIdx((i) => (i + 1) % (project?.images.length || 1)),
+    [project?.images.length]
+  );
+
+  if (!project) return notFound();
 
   const onThumbClick = (i: number) => {
     setIdx(i);
     setOpen(true);
   };
   const onClose = () => setOpen(false);
-  const onPrev = useCallback(
-    () =>
-      setIdx((i) => (i - 1 + project.images.length) % project.images.length),
-    [project.images.length]
-  );
-  const onNext = useCallback(
-    () => setIdx((i) => (i + 1) % project.images.length),
-    [project.images.length]
-  );
 
   return (
     <section className={styles.container}>
