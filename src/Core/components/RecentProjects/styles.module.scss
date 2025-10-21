@@ -1,0 +1,82 @@
+.container {
+  position: relative;
+  z-index: 10;
+  padding: 60px 80px;
+  @include responsive(padding, 60px 80px, 20px);
+  width: 100%;
+  background-color: $color-white;
+  @include flex(flex-start, space-between, column);
+  @include responsive(gap, 40px, 30px, 30px);
+
+  > h1 {
+    @include responsive(font-size, 26px, 20px, 20px);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .frame {
+    width: 100%;
+    @include flex(flex-start, flex-start, row, 20px);
+
+    &:nth-child(2) {
+      flex-direction: row-reverse;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 0;
+      }
+
+      &:hover .cardImage {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      .cardImage {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        @include responsive(max-height, 700px, 200px, 200px);
+        display: block;
+        transition: transform 0.6s ease, filter 0.4s ease;
+      }
+
+      .overlayText {
+        position: absolute;
+        @include responsive(bottom, 36px, 8px, 8px);
+        @include responsive(left, 36px, 8px, 8px);
+        @include responsive(font-size, 20px, 16px, 16px);
+        right: 16px;
+        color: white;
+        letter-spacing: 1px;
+        font-weight: 500;
+        width: 80%;
+        text-align: left;
+        z-index: 1;
+        text-transform: uppercase;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      &:nth-child(1) {
+        flex: 2;
+      }
+
+      &:nth-child(2) {
+        flex: 3;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+  z-index: 10;
+  @include responsive(padding, 200px 120px 80px 120px, 50px 20px);
+  margin-top: -1px;
+  width: 100%;
+  background-color: $color-white;
+  @include flex(center, space-between, row, 20px);
+  @include responsive(flex-direction, row, column, column);
+
+  > div {
+    text-align: center;
+    @include responsive(text-align, center, left, left);
+    font-weight: 400;
+    > h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      @include responsive(font-size, 20px, 16px, 16px);
+      @include responsive(margin-bottom, 18px, 10px, 10px);
+    }
+    > p {
+      @include responsive(font-size, 16px, 14px, 14px);
+      line-height: 1.6;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.container {
+  @include responsive(
+    height,
+    calc(100vh - 120px),
+    calc(100vh - 100px),
+    calc(100vh - 100px)
+  );
+  width: 100%;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: fixed;
+    @include responsive(top, -120px, -100px, -100px);
+    left: 0;
+    width: 100%;
+    height: calc(100vh + 120px);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  @include fixed(-120px);
+  @include responsive(top, -120px, -100px, -100px);
+  @include responsive(
+    height,
+    calc(100vh + 120px),
+    calc(100vh + 100px),
+    calc(100vh + 100px)
+  );
+  width: 100%;
+}
+
+.heroText {
+  @include fixed(50%, null, null, 80px);
+  @include responsive(position, fixed, absolute, absolute);
+  @include responsive(left, 80px, 20px, 20px);
+  padding-right: 40px;
+  z-index: 1;
+  color: white;
+  @include responsive(width, 50%, unset, unset);
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #ededed;
+  > p {
+    @include responsive(font-size, 1.8rem, 22px, 22px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+  }
+}
+
+.heroFooter {
+  @include fixed(null, null, 60px, null);
+  @include responsive(position, fixed, absolute, absolute);
+  z-index: 1;
+  color: #ededed;
+  @include responsive(font-size, 16px, 18px, 18px);
+  @include responsive(padding, 0 100px, 0 20px, 0 20px);
+  @include responsive(bottom, 60px, 30px, 30px);
+  font-weight: 300;
+  @include flex(center, space-between);
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  padding: 6rem 2rem;
+  color: #222;
+  height: 1000px;
+  line-height: 1.8;
+}

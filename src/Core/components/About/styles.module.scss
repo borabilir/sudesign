@@ -1,0 +1,94 @@
+.container {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  @include responsive(height, 2000px, 1600px, 1600px);
+  z-index: 10;
+  @include flex(center, flex-start, column);
+  @include responsive(align-items, center, flex-start, flex-start);
+  @include responsive(text-align, center, left, left);
+
+  .text {
+    width: 100%;
+    @include flex(center, flex-start, column);
+    @include responsive(align-items, center, flex-start, flex-start);
+    @include responsive(gap, 20px, 16px, 16px);
+    position: sticky;
+    top: 100px;
+
+    @include responsive(padding-top, 200px, 80px, 80px);
+    @include responsive(padding-left, unset, 20px, 20px);
+    @include responsive(padding-right, unset, 20px, 20px);
+
+    > h2 {
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      @include responsive(font-size, 24px, 18px, 18px);
+      text-transform: uppercase;
+    
+    }
+
+    > p {
+      position: relative;
+      width: 50%;
+      font-weight: 300;
+      @include responsive(width, 50%, unset, unset);
+      @include responsive(font-size, 28px, 18px, 18px);
+      line-height: 1.4;
+    }
+  }
+
+  .images {
+    margin-top: 200px;
+    position: sticky;
+    top: -900px;
+    z-index: 2;
+    @include flex(center, center);
+    pointer-events: none;
+    flex-wrap: wrap;
+    @include responsive(width, 50%, 100%, 100%);
+    margin: 200px auto 0 auto;
+
+    .imageWrapper {
+      position: absolute;
+      flex: 1 1 30%;
+      width: 50%;
+      overflow: hidden;
+
+      &:nth-of-type(1) {
+        aspect-ratio: 3 / 4;
+        min-width: 200px;
+        max-width: 400px;
+        left: 20px;
+        top: 160px;
+        z-index: 30;
+      }
+      &:nth-of-type(2) {
+        aspect-ratio: 1;
+        min-width: 200px;
+        max-width: 400px;
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+        z-index: 20;
+      }
+      &:nth-of-type(3) {
+        aspect-ratio: 3 / 4;
+        min-width: 200px;
+        max-width: 400px;
+        right: 20px;
+        top: 300px;
+        z-index: 10;
+      }
+
+      img {
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

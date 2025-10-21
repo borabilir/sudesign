@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: $color-white;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.stage {
+  position: relative;
+  width: min(96vw, 1600px);
+  height: min(92vh, 1000px);
+}
+
+.imageWrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: contain; // görseli taşmadan ortala
+  background: #fff;
+}
+
+.iconBtn {
+  position: absolute;
+  top: 8px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  color: #222;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.12s ease, background 0.12s ease;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  > svg {
+    font-size: 30px;
+  }
+}
+
+.close {
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  font-size: 22px;
+  line-height: 1;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  > svg {
+    font-size: 20px;
+  }
+}
+.prev {
+  position: absolute;
+  left: 50px;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+}
+.next {
+  right: 50px;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+}
+
+@media (max-width: 900px) {
+  .stage {
+    width: 100vw;
+    height: 100vh;
+  }
+  .prev {
+    left: 8px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .next {
+    right: 8px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+}

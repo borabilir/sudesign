@@ -1,0 +1,92 @@
+.container {
+  width: 100%;
+  @include flex(flex-start, center, row, 120px);
+  @include responsive(padding, 60px 30px, 20px 24px 80px 24px);
+  @include responsive(flex-direction, column, column, column);
+  @include responsive(gap, 44px, 20px, 20px);
+
+  .content {
+    @include flex(flex-start, flex-start, column);
+    flex: 1;
+    width: 100%;
+
+    > h2 {
+      @include responsive(font-size, 44px, 22px, 22px);
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      margin: 0 auto 40px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+
+      &::-webkit-scrollbar { display: none; }
+      scrollbar-width: none;
+
+      .imageWrapper {
+        @include responsive(
+          flex,
+          0 0 calc((100% - 3 * 10px) / 4),
+          0 0 calc((100% - 10px) / 2),
+          0 0 calc((100% - 10px) / 2)
+        );
+        position: relative;
+        @include responsive(aspect-ratio, 1.4 / 1, 1.2 / 1, 1.2 / 1);
+        overflow: hidden;
+        background: #f4f4f4;
+        scroll-snap-align: start;
+
+        &:hover .image {
+          transform: scale(1.03);
+        }
+        &:hover .overlay {
+          opacity: 1;
+        }
+        &:hover .title {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .image {
+        cursor: pointer;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      /* yarı saydam siyah layer */
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5); /* yarı saydam siyah */
+        opacity: 0;
+        transition: opacity 200ms ease;
+        pointer-events: none; /* tıklama Image'a gitsin */
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 14px;
+      }
+
+      /* başlık stili */
+      .title {
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0,0,0,.45);
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 220ms ease, transform 220ms ease;
+      }
+    }
+  }
+}

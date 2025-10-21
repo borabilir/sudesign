@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  @include flex(flex-start, center, row, 120px);
+  @include responsive(padding, 60px 120px, 20px 24px 80px 24px);
+  @include responsive(flex-direction, row, column, column);
+  @include responsive(gap, 44px, 20px, 20px);
+
+  .imageWrapper {
+    flex: 1;
+    max-width: 500px;
+    @include responsive(width, 50%, 100%, 100%);
+  }
+
+  .imgResponsive {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    @include responsive(height, auto, 400px, 400px);
+    border-radius: 0;
+  }
+
+  .content {
+    @include flex(flex-start, flex-start, column);
+    flex: 1;
+    max-width: 500px;
+
+    > h2 {
+      font-size: 28px;
+      @include responsive(font-size, 28px, 22px, 22px);
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    > p {
+      @include responsive(font-size, 18px, 16px, 16px);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  @include flex(center, space-between, row, 40px);
+  @include responsive(flex-direction, row, column, column);
+  @include responsive(align-items, center, flex-start, flex-start);
+  background-color: $color-white;
+  @include responsive(padding, 60px 80px, 20px, 20px);
+  width: 100%;
+  margin-top: auto;
+  z-index: 10;
+  font-size: 14px;
+
+  > div {
+    > ul {
+      list-style-type: none;
+      @include flex(flex-start, flex-start, column, 4px);
+    }
+  }
+}

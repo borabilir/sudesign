@@ -1,0 +1,88 @@
+.container {
+  width: 100%;
+  padding: 80px 80px 120px;
+  @include responsive(padding, 40px 24px, 40px 24px, 40px 24px);
+  background: $color-white;
+
+  .header {
+    max-width: 900px;
+    text-align: left;
+    @include responsive(margin, 0 140px 60px, 0 auto 40px, 0 auto 40px);
+
+    .year {
+      font-size: 16px;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      @include responsive(margin-bottom, 40px, 14px, 14px);
+      text-transform: uppercase;
+      @include responsive(font-size, 42px, 32px, 28px);
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      color: #111;
+      @include responsive(font-size, 16px, 14px, 14px);
+
+      p {
+        margin: 0;
+        strong {
+          display: block;
+          font-weight: 600;
+          color: #555;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+          font-size: 14px;
+          letter-spacing: 0.03em;
+        }
+      }
+    }
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    width: 100%;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+
+    .imageWrapper {
+      @include responsive(
+        flex,
+        0 0 calc((100% - 3 * 10px) / 4),
+        0 0 calc((100% - 10px) / 2),
+        0 0 calc((100% - 10px) / 2)
+      );
+      position: relative;
+      @include responsive(aspect-ratio, 1.8 / 1, 1.2 / 1, 1.2 / 1);
+      overflow: hidden;
+      background: #f4f4f4;
+      scroll-snap-align: start;
+    }
+
+    .image {
+      cursor: pointer;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+}
