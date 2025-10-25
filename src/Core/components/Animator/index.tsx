@@ -39,8 +39,9 @@ const Animator: React.FC<AnimatorProps & { as?: React.ElementType }> = ({
     <MotionComponent
       className={className}
       initial={initial}
+      animate={whileInView}
       whileInView={whileInView}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration, delay }}
       {...rest}
     >

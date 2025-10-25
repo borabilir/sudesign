@@ -54,6 +54,13 @@ export default function Lightbox({
     startX.current = null;
   };
 
+  const isVideo = (src: Img) => {
+    if (typeof src === 'string') {
+      return src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+    }
+    return false;
+  };
+
   const img = images[index];
 
   return createPortal(
@@ -86,14 +93,25 @@ export default function Lightbox({
           <ChevronLeftIcon />
         </button>
         <div className={styles.imageWrap}>
-          <Image
-            src={img}
-            alt={`image ${index + 1}`}
-            fill
-            className={styles.image}
-            sizes="100vw"
-            priority
-          />
+          {isVideo(img) ? (
+            <video
+              src={typeof img === 'string' ? img : ''}
+              className={styles.image}
+              controls
+              autoPlay
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          ) : (
+            <Image
+              src={img}
+              alt={`image ${index + 1}`}
+              fill
+              className={styles.image}
+              sizes="100vw"
+              priority
+            />
+          )}
         </div>
         <button
           className={`${styles.iconBtn} ${styles.next}`}

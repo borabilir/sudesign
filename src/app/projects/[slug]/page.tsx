@@ -37,6 +37,10 @@ export default function ProjectDetails({ params }: Props) {
   };
   const onClose = () => setOpen(false);
 
+  const isVideo = (src: string) => {
+    return src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
@@ -65,13 +69,23 @@ export default function ProjectDetails({ params }: Props) {
             role="button"
             aria-label="Büyüt"
           >
-            <Image
-              src={img}
-              alt={`${project.name} ${i + 1}`}
-              fill
-              className={styles.image}
-              sizes="(max-width:1024px) 100vw, 25vw"
-            />
+            {isVideo(img) ? (
+              <video
+                src={img}
+                className={styles.image}
+                controls
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <Image
+                src={img}
+                alt={`${project.name} ${i + 1}`}
+                fill
+                className={styles.image}
+                sizes="(max-width:1024px) 100vw, 25vw"
+              />
+            )}
           </div>
         ))}
       </Animator.div>
