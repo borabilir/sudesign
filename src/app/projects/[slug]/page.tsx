@@ -14,10 +14,10 @@ interface Props {
 
 export default function ProjectDetails({ params }: Props) {
   const { slug } = React.use(params);
-  const project = Projects.find((p) => p.slug === slug);
-
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
+
+  const project = Projects.find((p) => p.slug === slug);
 
   const onPrev = useCallback(
     () =>
@@ -29,17 +29,18 @@ export default function ProjectDetails({ params }: Props) {
     [project?.images.length]
   );
 
-  if (!project) return notFound();
-
-  const onThumbClick = (i: number) => {
+  const onThumbClick = useCallback((i: number) => {
     setIdx(i);
     setOpen(true);
-  };
-  const onClose = () => setOpen(false);
+  }, []);
+
+  const onClose = useCallback(() => setOpen(false), []);
 
   const isVideo = (src: string) => {
     return src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
   };
+
+  if (!project) return notFound();
 
   return (
     <section className={styles.container}>
